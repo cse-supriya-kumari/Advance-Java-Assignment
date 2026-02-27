@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
+</head>
+<body>
+
+<h2>Employee List</h2>
+
+<a th:href="@{/addEmployee}">➕ Add Employee</a>
+
+<br><br>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+
+    <!-- CORRECT ATTRIBUTE NAME -->
+    <tr th:each="emp : ${employees}">
+        <td th:text="${emp.id}"></td>
+        <td th:text="${emp.employeeName}"></td>
+        <td th:text="${emp.email}"></td>
+        <td>
+            <a th:href="@{/editEmployee/{id}(id=${emp.id})}">Edit</a>
+            |
+            <a th:href="@{/deleteEmployee/{id}(id=${emp.id})}"
+               onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
